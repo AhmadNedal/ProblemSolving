@@ -5,69 +5,98 @@ using namespace std;
 
 // LinkProblem : https://codeforces.com/contest/371/problem/B
 
+    int  dp[4001];
 
-const ll OO = 1e9+1;
-map<pair<ll, ll>, ll> dp;
-ll recc(ll a, ll b) {
+    ll fac(ll n) {
 
+    int res = 1;
 
-        if (a==b){
-           return 0;
-        }
-
-        if (dp.count({a, b})){
-            return dp[{a, b}];
-        }
-
-        ll &res = dp[{a, b}];
-        res = OO;
-
-           if (a%2==0){
-                res = min(res,recc(a/2,b)+1);
-           }
-           if (b%2==0){
-               res = min(res,recc(a,b/2)+1);
-           }
-           if (a%3==0){
-            res = min(res,recc(a/3,b)+1);
-           }
-
-           if (b%3==0){
-            res = min(res,recc(a,b/3)+1);
-           }
-
-           if (a%5==0){
-                res = min(res,recc(a/5,b)+1);
-           }
-
-           if (b%5==0){
-                res = min(res,recc(a,b/5)+1);
-           }
+    for (int i = 2; i <= n; i++) {
+        res *= i;
+    }
 
     return res;
-}
-
-void solve() {
-    ll a, b;
-    cin >> a >> b;
-
-    dp.clear();
-
-    ll res = recc(a,b);
-
-    if (res>=OO) {
-        cout << "-1\n";
-    } else {
-        cout <<res<<"\n";
     }
-}
+
+
+
+    void solve() {
+
+        ll n,m;cin>>n>>m;
+
+        ll arr[n][m]={0};
+        ll arr2[n][m]={0};
+        ll arr3[n][m]={0};
+
+        for(int i=0;i<n;++i) {
+          for(int j=0;j<m;++j) {
+             cin >>arr[i][j];
+             arr2[i][j] = arr[i][j] ;
+             arr3[i][j] = arr[i][j] ;
+          }
+        }
+
+        for(int i=0;i<n;++i) {
+          for(int j=0;j<m;++j) {
+             if(!(i==0||j==0 )) {
+                arr[i][j] +=arr[i-1][j-1] ;
+             }
+          }
+        }
+
+        for(int i=0;i<n;++i) {
+          for(int j=0;j<m;++j) {
+             if  (!(i==0||j==m-1 )) {
+                arr2[i][j] +=arr2[i-1][j+1] ;
+             }
+          }
+        }
+
+
+
+        ll ans =0 ;
+
+        for(int i=0;i<n;++i) {
+            ll num=0;
+          for(int j=0;j<m;++j){
+                ll ii=i,jj=j;
+
+
+                while (ii<n-1&&jj>0 ) {
+                    jj--; ii++;
+                }
+                ll ansx = arr2[ii][jj];
+
+                ii=i,jj=j;
+                while (ii<n-1&&jj<m-1 ) {
+                    jj++; ii++;
+                }
+                ll ansy = arr[ii][jj];
+                ans = max ( ans ,ansy+ansx-arr3[i][j]) ;
+
+          }
+        }
+
+        cout <<ans <<endl;
+
+
+
+
+
+    }
+
 
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-     solve();
+    int _= 1;
+    cin >>_;
+    while (_--) {
+         solve();
+    }
 
     return 0;
 }
+

@@ -1,60 +1,66 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
+ //Linkproblem:https://codeforces.com/contest/550/problem/C
+const ll OO = 1e9 * -1;
 
-
-// LinkProblem : https://codeforces.com/contest/455/problem/A
-
-
-
-    ll const N = 1e6+2 ;
-    ll n, dp[N] ,arr[N]={0} ;
-    ll lastIndex =0 ;
-
- ll rec(int idx) {
-        if(idx>=lastIndex+1){
-            return 0 ;
-        }
-
-        ll &res=dp[idx] ;
-
-        if(res!=-1){
-            return res;
-        }
-
-        res=0;
-        ll num=max(rec(idx+2)+(arr[idx]*idx),rec(idx+1));
-        res = max (res,num);
-
-        return res ;
-
-
-
-
-    }
+ll n,k;
+vector<ll> v;
+vector<vector<ll>> dp;
 
 
 void solve() {
 
-       cin>>n;
-       memset ( arr , 0 , sizeof arr );
-       memset ( dp , -1 , sizeof dp  );
+
+     string str; cin>>str;
+
+     for(int i=0;i<str.size();++i){
+        if(str[i]=='0'||str[i]=='8'){
+            cout << "YES\n"<<str[i];
+            return ;
+        }
 
 
-       for(ll num,i=0;i<n;++i){
-            cin>>num;
-            arr[num] ++;
-            lastIndex= max(lastIndex,num) ;
-       }
-        cout <<rec(0) ;
+        for (int j=i+1;j<str.length() ;++j) {
 
-    }
+                string str2 = {str[i],str[j]};
+                int numhttps://codeforces.com/contest/550/problem/C = stoi(str2) ;
+
+                if (num%8==0) {
+                    cout<<"YES\n";
+                    cout<<num<<"\n" ;
+                    return;
+                }
+
+            for(int k=j+1;k<str.size();++k){
+
+                string str2 = {str[i],str[j],str[k]};
+                int num = stoi(str2) ;
+
+                if (num%8==0) {
+                    cout<<"YES\n";
+                    cout<<num<<"\n" ;
+                    return;
+                }
+            }
+        }
+     }
+
+
+     cout << "NO\n" ;
+
+
+
+}
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-     solve();
+    //int t=0;//cin>>t;
+   // while (t--)
+
+    solve();
 
     return 0;
 }

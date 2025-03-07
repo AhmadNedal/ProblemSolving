@@ -6,39 +6,6 @@ const ll OO = 1e9 * -1;
 
 ll n,k;
 vector<ll> v;
-vector<vector<ll>> dp;
-
-ll rec(ll idx, ll helthy) {
-    if (helthy < 0) {
-        return OO;
-    }
-    if (idx == n) {
-        return 0;
-    }
-    ll &res = dp[idx][helthy];
-
-    if (res!= -1) {
-        return dp[idx][helthy];
-    }
-
-    if (v[idx] < 0) {
-        res = max(rec(idx + 1, helthy), rec(idx + 1, helthy + v[idx]) + 1);
-    } else {
-        res = rec(idx + 1, helthy + v[idx]) + 1;
-    }
-
-    return res;
-}
-
-
- bool can(ll hei) {
-      ll sum =0 ;
-      for (int i=0;i<n; ++i ) {
-            if (hei-v[i]>0)sum+=(hei-v[i]);
-      }
-      if ( sum <=k) return true ;
-      return false;
- }
 
 void solve() {
 

@@ -3,45 +3,32 @@
 using namespace std;
 
 
-// LinkProblem : https://codeforces.com/contest/816/problem/B
+// LinkProblem : https://codeforces.com/contest/762/problem/A
 
 
 
 void solve() {
 
-       int n ,k,q ; cin >>n>>k>>q ;
-        int arr[200002] ={0};
-        int startloop=200002,endloop=0;
-
-        for(int start,endd,i=1;i<=n;++i){
-            cin >>start >>endd;
-            arr[start]++ ;
-            arr[endd+1]--;
-            startloop = min(startloop,start) ;
-            endloop = max(endloop,endd) ;
-        }
-
-        for (int i=startloop;i<endloop+1;++i){
-            arr[i] = arr[i] + arr[i-1] ;
-        }
-
-        for (int i=1;i<200002;++i){
-
-            if ( arr[i] >= k ){
-                arr[i]= arr[i-1]+1;
-            }else {
-                arr[i]=arr[i-1];
+     
+       ll n,k,num=0; cin >>n>>k ;
+       vector<ll> v,v2;
+       for(ll i=1;i<=sqrtl(n);++i) {
+            if(i*i==n){
+                v.push_back(i);
+            }else if(n%i==0){
+                v.push_back(i) ;
+                v.push_back(n/i) ;
             }
+       }
+ 
+       sort (v.begin(),v.end());
+ 
+        if (k>v.size()){
+            cout << "-1" <<endl;
+        }else {
+            cout<<v[k-1]<<endl;
         }
-
-
-        ll l,r;
-        while ( q-- ) {
-            cin >> l>>r ;
-            cout << arr[r]- arr[l-1] <<endl;
-        }
-
-
+ 
 
 
     }

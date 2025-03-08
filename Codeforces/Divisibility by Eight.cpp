@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
- //Linkproblem:https://codeforces.com/contest/550/problem/C
+ //Linkproblem: https://codeforces.com/contest/550/problem/C
 const ll OO = 1e9 * -1;
 
 ll n,k;
@@ -24,7 +24,7 @@ void solve() {
         for (int j=i+1;j<str.length() ;++j) {
 
                 string str2 = {str[i],str[j]};
-                int numhttps://codeforces.com/contest/550/problem/C = stoi(str2) ;
+                int num = stoi(str2) ;
 
                 if (num%8==0) {
                     cout<<"YES\n";

@@ -2,6 +2,8 @@
 #define ll long long
 using namespace std;
 
+//Link Problem : https://codeforces.com/contest/1692/problem/D
+
 void solve() {
     string str;
     int num;

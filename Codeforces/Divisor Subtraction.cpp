@@ -2,29 +2,7 @@
 #define ll long long
 using namespace std;
 
-vector <bool>isPrime(1,true);
-ll N = 1;
-
-
-void sieve() {
-    isPrime[0]=isPrime[1]=false ;
-    isPrime[2]=true ;
-    ll i=0;
-    while (i<N) {
-        i+=2;
-        isPrime[i]=false ;
-    }
-
-    for (i=3;i*i<=N;i+2){
-        if (isPrime[i]){
-             for (ll j=i*i;j<=N;j+=i) {
-                isPrime[j] = false;
-            }
-        }
-    }
-
-
-}
+//LinkProblem :https://codeforces.com/contest/1076/problem/B
 
 
 void solve() {

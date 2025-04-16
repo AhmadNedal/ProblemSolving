@@ -16,29 +16,6 @@ map<pair<int, ll>, bool> m2;
 
 
 
-bool rec (int idx,ll sum) {
-
-    if (idx==n) {
-        return sum%9==0;
-    }
-
-     if (m2.count({idx, sum})) {
-        return m2[{idx, sum}];
-     }else if (str[idx]=='2'){
-        ll newSum = sum+4 ;
-        return m2[{idx, sum}]=( rec ( idx+1 , sum+2 )|| rec ( idx+1 , newSum) );
-    }else if ( str[idx]=='3') {
-        ll newSum = sum+9 ;
-        return m2[{idx, sum}] = ( rec ( idx+1 , sum+3)|| rec ( idx+1 , newSum) );
-    }else {
-
-        return m2[{idx, sum}] =rec ( idx+1 ,sum+(str[idx]-'0'));
-    }
-
-}
-
-
-
 bool rec2(ll num2, ll num3,ll sum ) {
 
     if (sum %9==0 ) {

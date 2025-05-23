@@ -1,0 +1,38 @@
+class Solution {
+public:
+string str2 ; 
+    string longestPalindrome(string s) {
+        str2 = s ; 
+        string ans = rec (0,""); 
+        if ( ans.size()==0) {
+            ans = s[0]; 
+        }
+        return ans ; 
+    }
+
+    string rec(int index, string str) {
+
+        if (index==str2.size()) {
+            string newstr = str; 
+            reverse ( newstr.begin () , newstr.end() ) ;
+            if ( str == newstr ) { 
+                return str ; 
+            }else {
+                return "" ;
+            }
+        }
+        string ss= "" ;
+        ss += str2[index] ;
+
+        string ans1 = rec ( index+1, ss ) ; 
+        string ans2 = rec ( index+1 , str+str2[index] ) ; 
+
+        if ( ans1.size()>=ans2.size()){
+            return ans1 ;
+        }
+
+        return ans2 ; 
+
+
+    }
+};

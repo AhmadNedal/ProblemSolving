@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minDeletion(string s, int k) {
+        map <int , int> m; 
+        
+        for (auto it : s ) {
+            m[it-97]+=1; 
+        }
+        
+        vector <int>v ; 
+        for ( auto it : m ) {
+        
+            if(it.second>0)v.push_back(it.second) ; 
+        
+        }
+        
+        sort (v.begin(),v.end() ); 
+        
+        int num =0; 
+        while (v.size()>k) {
+            num += v[0] ;
+            v.erase(v.begin()) ;
+        }
+        
+        return num; 
+        
+    }
+};

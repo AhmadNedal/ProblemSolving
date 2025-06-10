@@ -1,0 +1,45 @@
+class Solution {
+public:
+
+vector <int>v ; 
+int dp[1010] ={0} ; 
+
+    int minCostClimbingStairs(vector<int>& cost) {
+        v = cost ;
+        memset(dp, -1, sizeof dp );
+        int res =  rec (0) ;         
+
+        return res ; 
+    }
+
+
+
+ int rec( int idx ) {
+
+        if ( idx >= v.size()) {
+            return 0 ; 
+        }
+
+        if ( dp[idx]!= -1 ) {
+            return dp[idx] ; 
+        } 
+        
+        
+        if ( idx==0 ) {
+            int num = min ( rec(idx+1), rec(idx+2) )+v[idx]; 
+            num=  min ( { num, rec(idx+1) }) ; 
+
+            return dp[idx]=num ;   
+             
+        }else {
+           int num = (min ( rec(idx+1), rec(idx+2)) + v[idx]); 
+            return dp[idx] = num ; 
+        }
+
+
+
+    }
+};
+
+
+   

@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ll const MOD =1e18+1;
+ 
+vector<ll>v,dp;
+ll n,x;
+ 
+void solve() {
+ 
+ 
+    cin>>n>>x ;
+    v.resize(n,MOD);
+    dp.resize(x+1,MOD);
+    dp[0]=0;
+ 
+    for(auto&it : v )cin>>it ;
+ 
+ 
+    for(int i=0;i<x+1; ++i) {
+ 
+        for (auto it : v) {
+ 
+            if ( i + it > x ){
+                continue;
+            }
+            dp[i+it] = min(dp[i]+1,dp[it+i]) ;
+        }
+ 
+    }
+ 
+ 
+    if ( dp[x] == MOD){
+        dp[x]=-1;
+    }
+ 
+    cout << dp[x] <<endl;
+ 
+ 
+ 
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

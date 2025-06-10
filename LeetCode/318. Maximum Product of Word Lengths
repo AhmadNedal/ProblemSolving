@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int maxProduct(vector<string>& words) {
+        vector <int>v ;
+        int ans =0 ; 
+        
+        for (int i=0;i<words.size();++i) {
+            int arr[27]={0} ;
+
+            for (char it : words[i]){
+                arr[it-97]+=1;  
+            }
+            
+            for (int j=i+1;j<words.size();++j) {
+                bool bol =true; 
+                
+                for(char it : words[j]){
+                    if (arr[it-97]){
+                        bol = false ; 
+                    }
+                }
+
+                if (bol) {
+                    int num =(words[i].size()*words[j].size()); 
+                    ans = max (ans ,num);
+                }
+
+            }
+            
+        }
+
+        return ans;
+
+    }
+};

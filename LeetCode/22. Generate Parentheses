@@ -1,0 +1,33 @@
+class Solution {
+public:
+int n1=0;
+vector <string>v; 
+
+    vector<string> generateParenthesis(int n) {
+        n1 = n ; 
+        n1*=2 ; 
+        rec (0,"") ; 
+        return v; 
+    }
+
+
+    void rec(int a , string str){
+         if (str.size()==n1){
+                if( a == 0 ) {
+                    v.push_back(str) ; 
+                }
+                return ; 
+         }
+
+         if ( a <0 ) {
+            return ; 
+         }
+
+        
+        
+            rec (a+1 , str+'(' ) ; 
+            rec (a-1 , str+')' ); 
+        
+         
+    }
+};

@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> validStrings(int n) {
+        vector<string> current = {"0", "1"};
+
+        for (int i = 1; i < n; ++i) {
+            vector<string> next;
+
+            for (string& s : current) {
+                // دائماً أضف "1"
+                next.push_back(s + "1");
+
+                // أضف "0" فقط إذا لا تنتهي بـ "0"
+                if (s.back() != '0') {
+                    next.push_back(s + "0");
+                }
+            }
+
+            // انتقل للمرحلة التالية
+            current = next;
+        }
+
+        return current;
+    }
+};

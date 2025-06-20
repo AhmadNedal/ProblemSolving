@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ 
+ 
+ 
+void speed(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+}
+ 
+ 
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,dp;
+ll n,x,o,l,mn=LLONG_MAX,r=MOD,a,c,m,b,y;
+string s,t;
+ 
+ 
+ll powerMod(ll a, ll b) {
+    if (b == 0)
+        return 1;
+ 
+    ll h = powerMod(a, b / 2);
+    ll res= (h*h)%MOD;
+ 
+    if (b%2==1)
+        res=(res*a)%MOD;
+ 
+    return res;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+void rec (int idx=0, ll x1=0, ll x2=0) {
+    if ( idx == n ) {
+        mn = min ( mn , abs(x1-x2));
+        return ;
+    }
+ 
+ 
+    rec(idx+1, x1+v[idx],x2);
+    rec(idx+1, x1,x2+v[idx]);
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+void solve(){
+ 
+    // cout << fixed  << setprecision(20) <<d<<endl;
+ 
+ 
+    cin>>n;
+ 
+    v.resize(n);
+    for(auto&it:v)cin>>it;
+ 
+    rec() ;
+    cout << mn <<endl;
+ 
+ 
+}
+ 
+int main() {
+    speed();
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

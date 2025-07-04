@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std; 
+void speed(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+}
+ 
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,seg,arr,v2;
+ll n,x,o,l,k,ans=0,mn=LLONG_MAX,r=MOD,y;
+string s,t;
+ll dp[1001];
+bool bol = false ;
+ll powerMod(ll a, ll b) {
+    if (b == 0)
+        return 1;
+
+    ll h = powerMod(a, b/2);
+    ll res= (h*h)%(bol?MOD:MOD-1);
+ 
+    if (b%2==1)
+        res=(res*a)%(bol?MOD:MOD-1);
+ 
+    return res;
+}
+ 
+ 
+  
+void build(int p , int l , int r ){
+ 
+    if(l==r){
+        seg[p]=arr[l];
+        return ;
+    }
+     int mid = (l+r)/2;
+    build(p*2,l,mid);
+    build(p*2+1,mid+1,r);
+ 
+    seg[p]=min(seg[p*2],seg[p*2+1]);
+}
+ 
+ 
+ll getValue(ll p,ll l,ll r , ll a , ll b ) {
+ 
+    if ( a<=l && r<=b) {
+        return seg[p];
+    }
+    if(r<a || l>b )
+        return MOD;
+
+    ll mid = (l+r)/2 ;
+    ll res =  min(getValue(p*2,l,mid,a,b),getValue(p*2+1,mid+1,r,a,b)); 
+    return res ;
+ }
+ 
+ 
+void solve() {
+ 
+    cin>>n>>k;
+    arr.resize(n);
+    seg.resize(4*n);
+ 
+    for(auto&it:arr)cin>>it;
+
+    build(1,0,n-1);
+    ll a, b;
+ 
+    while (k--){
+        cin>>a>>b;
+        cout << getValue(1,0,n-1,a-1,b-1) << endl;
+    }
+}
+ 
+int main() {
+    speed();
+ 
+    int t=1;//cin>>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

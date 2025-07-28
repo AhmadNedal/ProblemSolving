@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+void speed(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+}
+
+
+ll const MOD =1e9+7;
+
+vector<ll>v,dp;
+ll n,x,o,l,mn=LLONG_MAX,r=MOD,a,c,m,b,y;
+string s,t;
+
+
+void solve(){
+
+    cin>>n;
+    int const N=1e6+1;
+
+    vector<ll>arr(N,1);
+
+    for(int i=2;i<N;++i)for(int j=i;j<N;j+=i)arr[j]+=1;
+
+
+    while (n-- ) {
+        cin>>a;
+        cout <<arr[a]<<endl;
+    }
+}
+
+
+int main() {
+    speed();
+
+    int t=1;//cin >>t ;
+
+    while (t--)solve();
+
+    return 0;
+}

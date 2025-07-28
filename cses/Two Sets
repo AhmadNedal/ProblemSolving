@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,dp;
+ll n,x,o,l,r,a,m,b,y;
+string s,t;
+ 
+ 
+ 
+void solve(){
+ 
+    // cout << fixed  << setprecision(20) <<d<<endl;
+    ll sum =0 ;
+    cin >>n ;
+    vector<int>v;
+ 
+    for (int i=1;i<n+1;i++) {
+        v.push_back(i);
+        sum+=i;
+    }
+ 
+    if ( sum%2==1 ){
+        cout << "NO" <<endl;
+        return ;
+    }
+ 
+ 
+    vector<ll>ans ;
+    sum /=2;
+    int i=-1;
+ 
+    for(i=n-1;i>-1;--i){
+        if(sum>=v[i]){
+            ans.push_back(v[i]) ;
+            sum-=v[i];
+        }else {
+            break;
+        }
+    }
+ 
+ 
+    if(sum>0)ans.push_back(sum) ;
+ 
+    cout << "YES"<<endl;
+    cout << ans.size() <<endl;
+ 
+    for (auto it : ans ) {
+        cout << it << " ";
+    }
+    cout <<endl;
+    cout << n- ans.size() <<endl;
+ 
+ 
+    for (auto it : v) {
+ 
+        if( i<0 ) {
+            break;
+        }
+        i-=1;
+        if( it==sum)continue;
+ 
+        cout << it << " " ;
+ 
+    }
+
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

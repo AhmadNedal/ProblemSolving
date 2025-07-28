@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string sortVowels(string s) {
+        string str =""; 
+
+        for (int i=0;i<s.size();++i){
+            if (s[i]=='a'
+            ||s[i]=='A'||s[i]=='e'||s[i]=='E'||s[i]=='i'
+            ||s[i]=='I'||s[i]=='o'||s[i]=='O'||s[i]=='u'
+            ||s[i]=='U'
+            ){
+                str+=s[i]; 
+            }
+        }
+        sort ( str.begin(), str.end()) ; 
+
+        int idx =0 ; 
+        for (int i=0;i<s.size();++i){
+            if (s[i]=='a'
+            ||s[i]=='A'||s[i]=='e'||s[i]=='E'||s[i]=='i'
+            ||s[i]=='I'||s[i]=='o'||s[i]=='O'||s[i]=='u'
+            ||s[i]=='U'
+            ){
+                s[i]=str[idx]; 
+                idx+=1; 
+            }
+        }
+
+        return s ; 
+        
+    }
+};

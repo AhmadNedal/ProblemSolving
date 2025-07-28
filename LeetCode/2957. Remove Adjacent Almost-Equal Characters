@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int removeAlmostEqualCharacters(string word) {
+        int counter =0; 
+
+        for ( int i=1; i<word.size();++i) {
+            if (word[i]==word[i-1]-1 || word[i]==word[i-1]+1 || word[i]==word[i-1] ){ 
+                char ch = 'a' ; 
+                while ( (i<word.size()-1 && ( word[i]==word[i+1]-1 || word[i]==word[i+1]+1
+                || word[i]==word[i+1]) ) ||
+                word[i]==word[i-1]-1 || word[i]==word[i-1]+1 || word[i]==word[i-1] ){
+                    word[i]=ch ; 
+                    ch++; 
+                }
+            counter +=1; 
+            }
+        }
+
+
+        return counter ;
+
+        
+    }
+};

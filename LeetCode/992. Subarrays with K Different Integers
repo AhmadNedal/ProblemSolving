@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+       return answ ( nums,k)-answ(nums,k-1) ;
+    }
+
+
+    int answ ( vector <int >nums, int k ) {
+         int counter =0; 
+
+        int l=0,ans=0; 
+        map<int,int > m ;
+        
+        for (int r=0;r<nums.size();++r) {
+            m[nums[r]]+=1; 
+            if(m[nums[r]]==1)counter+=1; 
+
+            while ( counter > k ) {
+                m[nums[l]]-=1; 
+                if (m[nums[l]]==0)counter-=1; 
+                l++;
+            }
+            ans +=r-l+1;
+        }
+        return ans ; 
+
+    }
+};

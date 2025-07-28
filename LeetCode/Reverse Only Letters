@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string s) {
+        int idx =s.size()-1;  
+
+        string ans ="";
+
+        for (int i=0 ;i<s.size();++i){ 
+            
+            while(idx>0&&idx>i&&!isalpha(s[idx]))idx-=1; 
+
+            if (idx<=i)break; 
+
+            if(isalpha(s[i])){
+                char ch = s[i] ; 
+                s[i]=s[idx]; 
+                s[idx]=ch;
+                idx-=1; 
+            }
+        }
+
+
+        return s; 
+
+
+    }
+};

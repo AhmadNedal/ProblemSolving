@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> diStringMatch(string s) {
+        vector <int>arr (s.size()+1) ;
+
+        int les=0, up=s.size() ;
+
+        for(int i=0 ; i<s.size();++i) {
+            if ( s[i] == 'I') {
+                arr[i]=les;
+                les+=1;  
+            }else {
+                arr[i]=up;
+                up-=1; 
+            }
+        }
+
+        
+        arr[s.size()]=up; 
+        
+        return arr ;
+    }
+};

@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,dp;
+ll n,x,o,l,r,a,m,b,y;
+string s,t;
+ 
+ 
+ll powerMod(ll a, ll b) {
+    if (b == 0)
+        return 1;
+ 
+    ll h = powerMod(a, b / 2);
+    ll res= (h*h)%MOD;
+ 
+    if (b%2==1)
+        res=(res*a)%MOD;
+ 
+    return res;
+}
+ 
+ 
+ 
+ 
+void solve(){
+ 
+    // cout << fixed  << setprecision(20) <<d<<endl;
+ 
+    cin>>s;
+    ll freq[26] ;
+    memset(freq , 0 , sizeof freq) ;
+ 
+    for(auto it : s )freq[it-'A']++;
+ 
+ 
+    string ans ="";
+    bool bol= true ;
+    char ch;
+ 
+    for (int i=0 ;i<26;++i ) {
+        if (freq[i]%2==1){
+ 
+            if ( freq[i]>1 ) {
+               string s2(freq[i]/2,(i+'A'));
+               ans +=s2;
+            }
+ 
+            if(bol){
+                ch = i+'A' ;
+                bol =false ;
+                continue;
+            }
+            cout <<"NO SOLUTION"<<endl;
+            return ;
+        }
+ 
+        string s2(freq[i]/2,(i+'A'));
+        ans +=s2;
+ 
+    }
+ 
+    t= ans;
+    reverse (t.begin() , t.end()) ;
+ 
+    if (!bol)
+        cout << ans << ch << t <<endl;
+    else
+        cout << ans << t <<endl;
+ 
+ 
+ 
+ 
+ 
+ 
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

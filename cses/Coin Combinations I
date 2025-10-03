@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,dp;
+ll n,x;
+ 
+void solve(){
+ 
+    cin>>n>>x;
+    v.resize(n);
+    for (auto&it : v)cin>>it ;
+ 
+    dp.resize(x+1,0);
+ 
+ 
+    dp[0]=1;
+ 
+    for(int i=0;i<x+1;++i) {
+ 
+        for (auto it : v) {
+            if(it+i>x)continue;
+            dp[i+it]+=(dp[i]%MOD);
+            dp[i+it]%MOD;
+        }
+ 
+    }
+ 
+    cout <<dp[x]%MOD<<endl;
+ 
+ 
+ 
+ 
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

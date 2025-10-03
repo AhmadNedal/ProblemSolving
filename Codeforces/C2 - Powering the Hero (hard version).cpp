@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define SPEED ios::sync_with_stdio(0); cin.tie(0);
+#define YES cout << "YES"<<endl;
+#define NO cout << "NO"<<endl;
+#define IN(vec) for(auto&it:vec) cin >> it;
+using namespace std;
+
+
+ll const MOD =1e9+7;
+
+ll n,x,o,a,N=1e7-1,num,b,c,d,m,l,k,ans=0,mn=LLONG_MAX,r=MOD,y;
+string s,t;
+vector<int>v;
+
+
+ll powerMod(ll a, ll b) {
+    if (b==0)return 1;
+    ll e = powerMod(a,b/2);
+
+    ll res = (e*e)%MOD;
+
+    if (b%2==1)res=(res*a)%MOD;
+
+    return res;
+}
+
+
+int rec(int idx,int num,int sum){
+
+    if(idx==s.size())
+        return num==sum;
+
+
+
+    int res=0;
+
+
+    res+= rec(idx+1,num++,sum+v[idx]);
+    res+= rec(idx+1,1,v[idx]);
+
+
+    return res;
+
+
+
+
+
+
+
+
+}
+
+
+
+void solve(){
+
+    cin>>n;
+    priority_queue<ll>pq;
+    ans=0;
+    
+    while(n--){
+        cin>>a;
+        if(a==0){
+            if(pq.size()>0){
+                ans+=pq.top();
+                pq.pop();
+            }
+            
+            continue;
+
+        }
+        
+        pq.push(a);
+
+    }
+    
+
+    cout<<ans<<endl;
+
+
+
+
+}
+
+
+int main(){
+    SPEED;
+    int t=1;cin>>t;
+
+    while (t--)solve();
+
+    return 0;
+
+}

@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+
+
+void speed(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+}
+
+
+
+ll const MOD =1e9+7;
+
+vector<ll>v,dp;
+ll n,x,o,l,mn=LLONG_MAX,r=MOD,a,c,m,b,y;
+string s,t;
+
+
+
+
+void solve(){
+
+    cin>>t;
+    int f[t.size()]={0};
+    f[0]=0;
+    int len=0;
+
+
+
+    for(int i=1;i<t.size();++i){
+
+        while(len>0&&t[i]!=t[len])len=f[len-1];
+
+        if(t[len]==t[i])len+=1;
+
+        f[i]=len;
+    }
+
+    ll l= f[t.size()-1];
+    v.clear() ;
+
+    while (l>0) {
+        v.push_back(l);
+        l= f[l-1];
+    }
+
+
+
+    reverse(v.begin(),v.end());
+
+
+    for(auto it:v)cout <<it<<" ";
+
+    cout <<endl;
+
+
+}
+
+int main() {
+    speed();
+
+    int t=1;//cin >>t ;
+
+    while (t--)solve();
+
+    return 0;
+}

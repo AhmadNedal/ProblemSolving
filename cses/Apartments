@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ 
+void solve() {
+ 
+ 
+    ll n,m,k; cin>>n>>m>>k;
+ 
+    vector<ll> arr(n), arr2(m);
+    for(auto&it : arr)cin>>it;
+    for(auto&it :arr2)cin>>it;
+ 
+    sort (arr.begin(),arr.end());
+    sort (arr2.begin(),arr2.end());
+ 
+    ll pointer=0,num=0;
+ 
+    for(int i=0;i<m;++i) {
+ 
+        while(pointer < n && arr[pointer]<arr2[i]-k){
+            pointer+=1;
+        }
+ 
+        if(pointer==n)break;
+ 
+        if (arr[pointer]<=arr2[i]+k&&arr[pointer]>=arr2[i]-k){
+            num+=1;
+            pointer+=1;
+        }
+ 
+    }
+ 
+    cout << num <<endl;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

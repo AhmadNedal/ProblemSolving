@@ -1,0 +1,59 @@
+class Solution {
+public:
+    int largestSumAfterKNegations(vector<int>& nums, int k) {
+        int nummin = 0; 
+        bool bol =false , bol2 =false; 
+        
+        int sum=0 ;
+        for (auto it  : nums ) {
+            sum += it ; 
+
+            if ( it ==0 )bol = true ; 
+            if ( it< 0 )bol2=true;
+
+        }
+         
+         
+         sort ( nums.begin() , nums.end()) ; 
+
+        if (!bol2){
+
+            if ( bol || k%2==0 ) {
+                return sum ; 
+            }else {
+                return sum -nums[0]*2 ; 
+            }
+
+
+        }else {
+            
+            for ( int i=0; i < nums.size() ;++i) {
+                if ( k<1)break;  
+
+                if( nums[i] < 0 ) {
+                    nums[i]*=-1; 
+                    sum += nums[i]*2; 
+                    k-=1; 
+                }else {
+                    break; 
+                }
+            }
+
+            sort(nums.begin(),nums.end()); 
+
+            if ( k%2==0 ){
+                return sum ; 
+            }else {
+                return sum-nums[0]*2 ;
+
+            }
+
+
+
+        }
+
+
+    
+    }
+
+};

@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ll const MOD =1e9+7;
+ 
+vector<ll>v,dp;
+ll n,x,o,l,r,a,m,b,y;
+string s,t;
+ 
+ 
+ll powerMod(ll a, ll b) {
+    if (b == 0)
+        return 1;
+ 
+    ll h = powerMod(a, b / 2);
+    ll res= (h*h)%MOD;
+ 
+    if (b%2==1)
+        res=(res*a)%MOD;
+ 
+    return res;
+}
+ 
+ 
+ 
+ 
+void solve(){
+ 
+    // cout << fixed  << setprecision(20) <<d<<endl;
+ 
+    cin >>a>>b ;
+    ll mn = min(a,b);
+    ll mx = max(a,b);
+ 
+    if(mn*2<mx){
+        cout << "NO"<<endl;
+        return;
+    }
+ 
+    if ((a+b)%3==0)
+        cout << "YES"<<endl;
+    else
+        cout << "NO" <<endl ;
+ 
+ 
+ 
+ 
+ 
+ 
+}
+ 
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t=1;cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char>st ; 
+        
+        if(s.size()==1){
+            return false ;
+        }
+        for(auto it : s ) { 
+            if  (it=='('||it=='{'|| it=='['){
+                st.push(it); 
+                continue ; 
+            }
+            if(st.empty()){
+                return false ;
+            }
+            if(!st.empty()&&(st.top()=='('&&it==')')||(st.top()=='{'&&it=='}') ||st.top()=='['&&it==']'){
+                st.pop();
+                continue ; 
+            }
+            
+             return false ;
+            
+            
+        }
+
+        if(st.size()>0){
+            return false ;
+        }
+
+    return true; 
+    }
+};

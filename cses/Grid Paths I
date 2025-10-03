@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ 
+ 
+ 
+ 
+void speed(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+}
+ 
+ 
+
+ll const MOD =1e9+7;
+vector<ll>v,dp;
+ll n,x,o,l,mn=LLONG_MAX,r=MOD,a,c,m,b,y;
+string s,t;
+ 
+ 
+void solve(){
+ 
+    cin>>n;
+    int arr[n][n];
+    string str[n];
+    memset(arr,0,sizeof arr );
+ 
+    for(auto&it:str)cin>>it;
+ 
+ 
+    if(str[0][0]=='*'||str[n-1][n-1]=='*'){
+        cout << "0"<<endl;
+        return ;
+    }
+ 
+    arr[0][0]=1;
+    for (int j=1;j<n;++j){
+    if(str[0][j]=='*')arr[0][j]=0;
+    else arr[0][j]=arr[0][j-1];
+    }
+ 
+ 
+    for(int i=1;i<n;++i){
+        if(str[i][0]=='*')arr[i][0]=0;
+        else arr[i][0]=arr[i-1][0];
+    }
+ 
+ 
+ 
+    for(int i=1;i<n;++i) {
+        for(int j=1;j<n;++j){
+ 
+            if(str[i][j]=='*'){
+                arr[i][j]=0;
+                continue;
+            }
+ 
+            arr[i][j]+=arr[i-1][j]%MOD;
+            arr[i][j]+=arr[i][j-1]%MOD;
+ 
+            arr[i][j]%=MOD;
+ 
+        }
+ 
+    }
+ 
+ 
+    cout <<arr[n-1][n-1]%MOD<<endl;
+ 
+}
+
+
+int main() {
+    speed();
+ 
+    int t=1;//cin >>t ;
+ 
+    while (t--)solve();
+ 
+    return 0;
+}

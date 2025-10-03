@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+
+//Problem Link  : https://cses.fi/problemset/task/1642 
+
+void solve() {
+
+    ll n,k; cin>>n>>k;
+    vector <pair <int ,int >>  v;
+    ll num ;
+    for (int i=0 ; i < n;++i) {
+        cin>>num;
+        v.push_back({num , i+1 }) ;
+    }
+
+    sort ( v.begin() , v.end() ) ;
+
+
+    for(int i=0;i<n-3;++i){
+
+        for(int j=i+1;j<n-2;++j){
+
+            int l=j+1, r=n-1;
+
+            while (l<r) {
+                ll sum = v[l].first  + v[r].first + v[i].first +v[j].first ;
+                if (sum==k) {
+                    cout << v[i].second << " " << v[j].second  << " " <<  v[r].second << " " <<  v[l].second  <<endl ;
+                    return ;
+                }else if ( sum > k ) {
+                    r-=1;
+                }else {
+                    l+=1;
+                }
+            }
+        }
+    }
+
+
+    cout << "IMPOSSIBLE"<<endl;
+
+
+
+}
+
+int main() {
+     ios::sync_with_stdio(0);
+    cin.tie(0);
+    int t=1;
+    while (t--)solve();
+
+    return 0;
+}
+
+

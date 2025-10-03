@@ -1,0 +1,65 @@
+class Solution {
+public:
+    vector<string> printVertically(string s) {
+        string str ="" ; 
+        vector<string> v,v2 ; 
+        int maxlen = 0 ; 
+
+        for(auto it : s ) {
+            if (it==' '){ 
+                int num = str.size() ; 
+                maxlen = max ( maxlen , num ) ; 
+
+                if (str.size()>0)v.push_back(str) ; 
+                str=""; 
+            }else {
+                str+=it ; 
+            }
+        }
+        int num=str.size() ; 
+        maxlen = max ( maxlen ,num) ; 
+
+        if (str.size()>0)v.push_back(str) ; 
+
+        for (auto it : v )cout<<it << " : " ; 
+
+
+        str ="" ; 
+        for (int i=0;i<maxlen;++i) { 
+            for (int j=0;j<v.size();++j) {
+                if(v[j].size()>i){
+                    str+=v[j][i]; 
+                }else {
+                    str+=" "; 
+                }
+            }
+            v2.push_back(str) ; 
+            str =""; 
+        }
+        str= "";
+        for ( auto&it : v2 ) {
+
+                bool bol = true ; 
+                str =""; 
+
+                for ( int i=it.size()-1;i>-1 ; --i) {
+                    if (bol&&it[i]== ' ') {
+                        continue ; 
+                    }else {
+                        bol = false ;
+                        str+=it[i]; 
+                    }
+                }
+
+                reverse(str.begin () , str.end()) ; 
+                cout << "str  = " <<str <<endl ;
+
+            it = str ; 
+        }
+
+
+        return v2; 
+
+
+    }
+};

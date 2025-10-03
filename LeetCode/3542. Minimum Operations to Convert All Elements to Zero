@@ -1,0 +1,21 @@
+int solve(vector<int>& nums, int l, int r) {
+    if (l > r) return 0;
+
+    int minVal = *min_element(nums.begin() + l, nums.begin() + r + 1);
+
+    int ops = minVal;
+
+    for (int i = l; i <= r; ++i) {
+        nums[i] -= minVal;
+    }
+
+    int i = l;
+    while (i <= r) {
+        while (i <= r && nums[i] == 0) i++; 
+        int start = i;
+        while (i <= r && nums[i] > 0) i++;
+        ops += solve(nums, start, i - 1);
+    }
+
+    return min(ops, r - l + 1);
+}
